@@ -77,7 +77,7 @@ class DataAsyncTask extends AsyncTask<String, Void, String> {
             for (int i=0; i < jArray.length(); i++)
             {
                 String  name, type, community, location;
-                int id;
+                int id, category;
                 double longitude, latitude;
 
                 //TODO add correct column names from json
@@ -87,6 +87,7 @@ class DataAsyncTask extends AsyncTask<String, Void, String> {
                     JSONObject jObject = jArray.getJSONObject(i);
                     // Pulling items from the array
                     id =jObject.getInt("_id");
+                    category =jObject.getInt("category");
                     name = jObject.getString("name");
                     longitude = jObject.getDouble("longitude");
                     latitude = jObject.getDouble("latitude");
@@ -97,6 +98,7 @@ class DataAsyncTask extends AsyncTask<String, Void, String> {
 
                     ContentValues values = new ContentValues();
                     values.put("_id", id);
+                    values.put("category", category);
                     values.put("name",name);
                     values.put("longitude",longitude);
                     values.put("latitude",latitude);
