@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Hamilton Tourism</string>
+    <string name="app_intro">Welcome to the Hamilton Tourism App. Select one of the categories below to proceed.</string>
 </resources>
