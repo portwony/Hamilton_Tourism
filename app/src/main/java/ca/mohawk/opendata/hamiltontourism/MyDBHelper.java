@@ -24,7 +24,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
                     "location TEXT NULL," +
                     "type TEXT NULL," +
                     "community TEXT NULL," +
-                    "additional_details TEXT NULL," +
+                    "additionalInfo TEXT NULL," +
                     "FOREIGN KEY(categoryId) REFERENCES categories(_id))";
 
     public static final String SQL_CREATE_CATEGORIES =
