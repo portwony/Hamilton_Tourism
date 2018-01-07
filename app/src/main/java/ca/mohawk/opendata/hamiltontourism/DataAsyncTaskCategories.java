@@ -17,14 +17,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Objects;
 
 
-class DataAsyncTask extends AsyncTask<String, Void, String> {
+class DataAsyncTaskCategories extends AsyncTask<String, Void, String> {
 
     private Activity myActivity;
 
-    public DataAsyncTask(Activity inActivity) {
+    public DataAsyncTaskCategories(Activity inActivity) {
         myActivity = inActivity;
     }
 
@@ -36,8 +35,7 @@ class DataAsyncTask extends AsyncTask<String, Void, String> {
 
 
         try {
-
-            URL url = new URL("https://hamiltontourismapi.azurewebsites.net/locations");
+            URL url = new URL("https://hamiltontourismapi.azurewebsites.net/categories");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
@@ -77,44 +75,23 @@ class DataAsyncTask extends AsyncTask<String, Void, String> {
 
             for (int i=0; i < jArray.length(); i++)
             {
-                String  name, type, address;
-                int id, category;
-                double longitude, latitude;
+                String  name;
+                int id;
 
 
                 try {
                     JSONObject jObject = jArray.getJSONObject(i);
                     // Pulling items from the array
                     id =jObject.getInt("_id");
-                    category =jObject.getInt("categoryId");
                     name = jObject.getString("name");
-
-                    if (Objects.equals(jObject.getString("longitude"), "")) {
-                        longitude = 10000;
-                    } else {
-                        longitude = Double.valueOf(jObject.getString("longitude"));
-                    }
-
-                    if (Objects.equals(jObject.getString("latitude"), "")){
-                        latitude = 10000;
-                    } else {
-                        latitude = Double.valueOf(jObject.getString("latitude"));
-                    }
-                    address = jObject.getString("address");
-                    type = jObject.getString("type");
 
 
                     ContentValues values = new ContentValues();
                     values.put("_id", id);
-                    values.put("categoryId", category);
                     values.put("name",name);
-                    values.put("longitude",longitude);
-                    values.put("latitude",latitude);
-                    values.put("address",address);
-                    values.put("type",type);
 
 
-                    long newRowId = db.insert(MyDBHelper.TABLE_LOCATIONS, null, values);
+                    long newRowId = db.insert(MyDBHelper.TABLE_CATEGORIES, null, values);
 
 
 

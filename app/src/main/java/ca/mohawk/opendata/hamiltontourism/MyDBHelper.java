@@ -16,20 +16,22 @@ public class MyDBHelper extends SQLiteOpenHelper {
             "CREATE TABLE "
                     + TABLE_LOCATIONS +
                     " (_id INTEGER PRIMARY KEY," +
-                    "name TEXT," +
-                    "FOREIGN KEY(category_id) REFERENCES categories(_id)," +
-                    "longitude float NULL," +
-                    "latitude float NULL," +
+                    "categoryId INTEGER NOT NULL," +
+                    "name TEXT NOT NULL," +
+                    "longitude FLOAT NULL," +
+                    "latitude FLOAT NULL," +
+                    "address TEXT NULL" +
                     "location TEXT NULL," +
                     "type TEXT NULL," +
                     "community TEXT NULL," +
-                    "additional_details TEXT)";
+                    "additional_details TEXT NULL," +
+                    "FOREIGN KEY(categoryId) REFERENCES categories(_id))";
 
     public static final String SQL_CREATE_CATEGORIES =
             "CREATE TABLE "
                     + TABLE_CATEGORIES +
                     "(_id INTEGER PRIMARY KEY," +
-                    "name TEXT)";
+                    "name TEXT NOT NULL)";
 
 
     public static final String SQL_DELETE_LOCATIONS =
@@ -48,10 +50,10 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_CATEGORIES);
         db.execSQL(SQL_CREATE_LOCATIONS);
-        db.execSQL("INSERT INTO categories VALUES(1, 'Restaurants')");
-        db.execSQL("INSERT INTO categories VALUES(2, 'Waterfalls')");
-        db.execSQL("INSERT INTO locations VALUES(1, 'wilburs falls', 2, NULL, NULL, NULL, NULL, NULL, NULL)");
-        db.execSQL("INSERT INTO locations VALUES(2, 'barbers falls', 2, NULL, NULL, NULL, NULL, NULL, NULL)");
+        //db.execSQL("INSERT INTO categories(_id, name) VALUES(1, 'Restaurants')");
+        //db.execSQL("INSERT INTO categories(_id, name) VALUES(2, 'Waterfalls')");
+        //db.execSQL("INSERT INTO locations(_id, name, category) VALUES(1, 'wilburs falls', 2)");
+        //db.execSQL("INSERT INTO locations(_id, name, category) VALUES(2, 'barbers falls', 2)");
 
     }
 

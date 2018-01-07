@@ -24,7 +24,7 @@ public class LocationActivity extends AppCompatActivity {
         String[] projection = {"_id, category"};
         String selection = " _id = ? ";
         String[] selectionargs = {Integer.toString(id)};
-        Cursor infoCursor = db.query("courses",projection, selection, selectionargs, null, null,null,null);
+        Cursor infoCursor = db.query("categories",projection, selection, selectionargs, null, null,null,null);
 
 
         String category = "";

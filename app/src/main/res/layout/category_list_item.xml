@@ -4,8 +4,22 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/locationTextView"
+        android:id="@+id/categoryTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_gravity="start"
+        android:textAlignment="center"
+        style="@android:style/TextAppearance.DeviceDefault.Large"
+        />
+
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="start"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textAlignment="viewStart"
+        android:visibility="invisible" />
 </LinearLayout>
