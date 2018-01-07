@@ -38,16 +38,69 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        populateListOne();
+        populateListTwo();
+
+
+
+
+
+
+
+    }
+
+    private void populateListTwo() {
+
+        final ListView lv2 = (ListView) findViewById(R.id.categoriesList2);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+
+        String[] projection2 = { "_id, name" };
+        String sortOrder2 = null;
+
+        String selection2;
+        selection2 = "_id % 2 = 0";
+        String[] selectionArgs2 = null;
+
+
+        Cursor mycursor2 = db.query("categories", projection2, selection2, selectionArgs2, null, null, sortOrder2);
+
+
+        String fromColumns2[] = {"_id", "name"};
+        int toViews2[] = {R.id.id, R.id.categoryTextView};
+
+        SimpleCursorAdapter adapter2 = new SimpleCursorAdapter(this, R.layout.category_list_item, mycursor2, fromColumns2, toViews2, 0);
+
+
+        lv2.setAdapter(adapter2);
+
+        lv2.setClickable(true);
+        lv2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
+
+                //pass necessary values to intent. values in IF statement are only used to pass back to main
+                Intent intent = new Intent(view.getContext(), LocationActivity.class);
+                startActivity(intent);
+
+            }
+
+
+        });
+
+    }
+
+    private void populateListOne() {
 
         final ListView lv1 = (ListView) findViewById(R.id.categoriesList1);
-        //final ListView lv2 = (ListView) findViewById(R.id.categoriesList2);
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String[] projection = { "_id, name" };
         String sortOrder = null;
 
         String selection;
-        selection = null;
+        selection = "_id % 2 = 1";
         String[] selectionArgs = null;
 
         Cursor mycursor = db.query("categories", projection, selection, selectionArgs, null, null, sortOrder);
@@ -62,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         lv1.setAdapter(adapter);
 
         lv1.setClickable(true);
-       lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
@@ -75,12 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
-
-
-
-
     }
-
 
 
     private boolean downloadDatabase() {
