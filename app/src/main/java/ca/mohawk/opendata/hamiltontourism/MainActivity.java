@@ -13,20 +13,31 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
+import android.os.AsyncTask;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import static android.R.attr.data;
 import java.io.IOException;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    JSONObject data = null;
     public MyDBHelper dbHelper = new MyDBHelper(this);
 //    LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
  //   private String locationProvider = LocationManager.NETWORK_PROVIDER;
@@ -34,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     //TODO: remove set variables
     public double userLatitude = 43.23987705;
     public double userLongitude = -79.87474567;
+
 
 
     @Override
@@ -44,18 +56,15 @@ public class MainActivity extends AppCompatActivity {
         //TODO: figure out how to get users location properly
 
 
-
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         if (pref.getBoolean("hasDatabase", false) == false) {
 
             boolean hasDatabase = downloadDatabase();
 
-
             if (hasDatabase) {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putBoolean("hasDatabase", true);
                 editor.apply();
-
             } else {
                 Toast.makeText(this, "There was a problem downloading the database. Please try again.", Toast.LENGTH_LONG).show();
             }
@@ -65,9 +74,27 @@ public class MainActivity extends AppCompatActivity {
         populateListTwo();
 
 
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_home:
+                        Intent intentHome = new Intent(MainActivity.this, MainActivity.class);
+                        startActivity(intentHome);
+                        break;
+                    case R.id.action_nearby:
+                        Intent intentNearby = new Intent(MainActivity.this, NearbyActivity.class);
+                        startActivity(intentNearby);
+                        break;
+
+                }
+                return true;
+            }
+        });
+
     }
-
-
 
     private void populateListTwo() {
 
@@ -182,8 +209,75 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
 
+
     }
 
+    public void getJSON(final String city) {
+
+        new AsyncTask<Void, Void, Void>() {
+
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+
+            }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=hamilton&APPID=54197d3351cf8597f0a8edc0e635a9ee");
+
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+                    BufferedReader reader =
+                            new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+                    StringBuffer json = new StringBuffer(1024);
+                    String tmp = "";
+
+                    while((tmp = reader.readLine()) != null)
+                        json.append(tmp).append("\n");
+                    reader.close();
+
+                    data = new JSONObject(json.toString());
+
+                    if(data.getInt("cod") != 200) {
+                        System.out.println("Cancelled");
+                        return null;
+                    }
+
+
+                } catch (Exception e) {
+
+                    System.out.println("Exception "+ e.getMessage());
+                    return null;
+                }
+
+                return null;
+            }
+
+            TextView textView1 = (TextView)findViewById(R.id.weatherText);
+
+            @Override
+            protected void onPostExecute(Void Void) {
+                if(data!=null){
+
+
+                    try{
+
+                        String jArray = data.getString("main");
+                        JSONObject jObject = new JSONObject(jArray);
+                        int t = (int)(jObject.getDouble("temp")-273.15);
+                        textView1.setText(""+t+"° Celsius");
+
+                    }catch(Exception e){}
+                }
+
+            }
+        }.execute();
+
+    }
 
 
 }
