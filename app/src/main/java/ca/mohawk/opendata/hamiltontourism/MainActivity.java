@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getJSON("Hamilton");
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         if (pref.getBoolean("hasDatabase", false) == false) {
@@ -183,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         dlLocations.execute(uriCat);
 
         return true;
-        
+
 
     }
 
