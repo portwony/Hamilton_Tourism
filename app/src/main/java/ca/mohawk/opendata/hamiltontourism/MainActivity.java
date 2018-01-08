@@ -99,10 +99,14 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_nearby:
                         Intent intentNearby = new Intent(MainActivity.this, NearbyActivity.class);
+                        intentNearby.putExtra("userLatitude", userLatitude);
+                        intentNearby.putExtra("userLongitude", userLongitude);
                         startActivity(intentNearby);
                         break;
                     case R.id.action_settings:
                         Intent intentSettings = new Intent(MainActivity.this, SettingsActivity.class);
+                        intentSettings.putExtra("userLatitude", userLatitude);
+                        intentSettings.putExtra("userLongitude", userLongitude);
                         startActivity(intentSettings);
                         break;
                 }

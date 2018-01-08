@@ -25,6 +25,8 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+
+
         RadioButton celsius = (RadioButton)findViewById(R.id.radioDegreesC);
         RadioButton fahrenheit = (RadioButton)findViewById(R.id.radioDegreesF);
         RadioButton limit20 = (RadioButton)findViewById(R.id.radio20Results);
@@ -60,7 +62,12 @@ public class SettingsActivity extends AppCompatActivity {
                         startActivity(intentHome);
                         break;
                     case R.id.action_nearby:
+                        double userLatitude = getIntent().getDoubleExtra("userLatitude", 0);
+                        double userLongitude = getIntent().getDoubleExtra("userLongitude", 0);
+
                         Intent intentNearby = new Intent(SettingsActivity.this, NearbyActivity.class);
+                        intentNearby.putExtra("userLatitude", userLatitude);
+                        intentNearby.putExtra("userLongitude", userLongitude);
                         startActivity(intentNearby);
                         break;
                     case R.id.action_settings:
