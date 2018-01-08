@@ -7,13 +7,28 @@
     tools:context="ca.mohawk.opendata.hamiltontourism.SettingsActivity"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:background="@color/colorBlue"
+        android:text="Settings"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:enabled="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
     <TextView
         android:id="@+id/degreesLabel"
         style="@android:style/TextAppearance.DeviceDefault.Large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:text="@string/temperature_units"
+        android:paddingTop="125dp"
+        android:paddingLeft="10dp"
+        android:text="Temperature Units:"
+        android:textStyle="bold"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
@@ -21,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/degreesLabel"
+        android:paddingLeft="10dp"
         android:layout_alignParentStart="true"
         android:id="@+id/radioGroup3">
 
@@ -47,13 +63,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="15dp"
+        android:paddingLeft="10dp"
         android:text="Number of results to show:"
+        android:textStyle="bold"
         android:layout_below="@+id/radioGroup3"
         android:layout_alignParentStart="true" />
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
         android:id="@+id/radioGroup2"
         android:layout_below="@+id/resultsLabel"
         android:layout_alignParentStart="true">
@@ -83,13 +102,18 @@
 
     <Button
         android:id="@+id/updateDatabaseButton"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:onClick="updateDatabase"
         android:text="@string/update_database"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/radioGroup2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="italic"
+        android:background="@color/colorBlue"
+        />
 
 
     <RelativeLayout

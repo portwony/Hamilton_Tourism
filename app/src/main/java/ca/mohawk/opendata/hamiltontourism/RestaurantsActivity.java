@@ -61,10 +61,10 @@ public class RestaurantsActivity extends AppCompatActivity {
                         Intent intentHome = new Intent(RestaurantsActivity.this, MainActivity.class);
                         startActivity(intentHome);
                         break;
-                    case R.id.action_nearby:
-                        Intent intentNearby = new Intent(RestaurantsActivity.this, NearbyActivity.class);
-                        startActivity(intentNearby);
-                        break;
+
+                    case R.id.action_settings:
+                        Intent intentSettings = new Intent (RestaurantsActivity.this, SettingsActivity.class);
+                        startActivity(intentSettings);
 
                 }
                 return true;
