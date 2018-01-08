@@ -1,6 +1,7 @@
 package ca.mohawk.opendata.hamiltontourism;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -21,6 +22,7 @@ public class LocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
         final ListView lvLocations = (ListView) findViewById(R.id.locationsList);
 
@@ -36,7 +38,7 @@ public class LocationActivity extends AppCompatActivity {
         String selection = " categoryId =  " + categoryId;
         String[] selectionargs = null;
         String sortBy = "closeness ASC";
-        String limit = "20";
+        String limit = String.valueOf(pref.getInt("limit", 20));
         Cursor myCursor = db.query("locations", projection, selection, selectionargs, null, null, sortBy, limit);
 
         String fromColumns2[] = {"_id", "name", "address", "type", "latitude", "longitude", "additionalInfo"};

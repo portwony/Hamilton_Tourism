@@ -33,8 +33,12 @@ import com.google.android.gms.tasks.Task;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,10 +49,11 @@ public class MainActivity extends AppCompatActivity {
     private FusedLocationProviderClient mFusedLocationClient;
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
     protected Location mLastLocation;
+    private boolean isConnected = testConnection();
 
     //default variables
-    public double userLatitude = 43.2562;
-    public double userLongitude = -79.8681;
+    public double userLatitude;
+    public double userLongitude;
 
 
     @Override
@@ -60,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        if (pref.getInt("limit", 0) == 0){
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putInt("limit", 20);
+            editor.apply();
+        }
         if (pref.getBoolean("hasDatabase", false) == false) {
 
             boolean hasDatabase = downloadDatabase();
@@ -84,14 +94,15 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_home:
-                        Intent intentHome = new Intent(MainActivity.this, MainActivity.class);
-                        startActivity(intentHome);
                         break;
                     case R.id.action_nearby:
                         Intent intentNearby = new Intent(MainActivity.this, NearbyActivity.class);
                         startActivity(intentNearby);
                         break;
-
+                    case R.id.action_settings:
+                        Intent intentSettings = new Intent(MainActivity.this, SettingsActivity.class);
+                        startActivity(intentSettings);
+                        break;
                 }
                 return true;
             }
@@ -207,22 +218,38 @@ public class MainActivity extends AppCompatActivity {
     private boolean downloadDatabase() {
 
 
-        //TODO: set up checks for internet/connection to web service
-        //categories
-        DataAsyncTaskCategories dlCategories = new DataAsyncTaskCategories(this);
 
-        String uri = "https://hamiltontourismapi.azurewebsites.net/categories";
-        dlCategories.execute(uri);
+        if (isConnected) {
+            //categories
+            DataAsyncTaskCategories dlCategories = new DataAsyncTaskCategories(this);
 
-        //locations
-        DataAsyncTask dlLocations = new DataAsyncTask(this);
+            String uri = "https://hamiltontourismapi.azurewebsites.net/categories";
+            dlCategories.execute(uri);
 
-        String uriCat = "https://hamiltontourismapi.azurewebsites.net/locations";
-        dlLocations.execute(uriCat);
+            //locations
+            DataAsyncTask dlLocations = new DataAsyncTask(this);
 
-        return true;
+            String uriCat = "https://hamiltontourismapi.azurewebsites.net/locations";
+            dlLocations.execute(uriCat);
 
+            return true;
+        } else {
+            return false;
+        }
 
+    }
+
+    private boolean testConnection() {
+
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+            int     exitValue = ipProcess.waitFor();
+            return (exitValue == 0);
+        }
+        catch (IOException | InterruptedException e)          { e.printStackTrace(); }
+
+        return false;
     }
 
     public void getJSON(final String city) {
@@ -316,6 +343,8 @@ public class MainActivity extends AppCompatActivity {
 
                         } else {
                             Log.w(TAG, "getLastLocation:exception", task.getException());
+                            userLatitude = 43.2562;
+                            userLongitude = -79.8681;
                         }
                     }
                 });

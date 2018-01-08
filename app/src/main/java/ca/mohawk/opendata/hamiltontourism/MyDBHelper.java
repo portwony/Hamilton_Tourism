@@ -38,7 +38,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + TABLE_LOCATIONS;
 
     public static final String SQL_DELETE_CATEGORIES =
-            "DROP TABLE IF EXISTS " + TABLE_LOCATIONS;
+            "DROP TABLE IF EXISTS " + TABLE_CATEGORIES;
 
 
 
