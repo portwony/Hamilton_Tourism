@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/restaurantNameTextView"
             android:text="Restaurant Name"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="@color/colorBlue"/>
 
