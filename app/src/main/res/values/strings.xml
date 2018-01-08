@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Hamilton Tourism</string>
     <string name="app_intro">Welcome to the Hamilton Tourism App. Select one of the categories below to proceed.</string>
+    <string name="permission_rationale">This app may require your location in order to show you nearby points of interest.</string>
+    <string name="permission_denied_explanation">You have denied this application access to your location, which may hinder the ability of Hamilton Tourism to show you nearby points of interest.</string>
+    <string name="settings">Settings</string>
 </resources>
