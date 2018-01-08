@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getJSON("Hamilton");
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -272,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Void doInBackground(Void... params) {
                 try {
-                    URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=hamilton&APPID=54197d3351cf8597f0a8edc0e635a9ee");
+                    URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=hamilton,ca&APPID=54197d3351cf8597f0a8edc0e635a9ee");
 
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
