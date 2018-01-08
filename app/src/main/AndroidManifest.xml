@@ -25,6 +25,12 @@
         <activity android:name=".NearbyActivity"></activity>
         <activity android:name=".LocationActivity"></activity>
         <activity android:name=".RestaurantsActivity"></activity>
+        <activity android:name=".RestaurantActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

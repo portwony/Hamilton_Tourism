@@ -1,6 +1,7 @@
 package ca.mohawk.opendata.hamiltontourism;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -181,6 +182,11 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(view.getContext(), RestaurantsActivity.class);
                     intent.putExtra("userLatitude", String.valueOf(userLatitude));
                     intent.putExtra("userLongitude", String.valueOf(userLongitude));
+                    SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString("longitude", String.valueOf(userLongitude));
+                    editor.putString("latitude", String.valueOf(userLatitude));
+                    editor.commit();
                     startActivity(intent);
 
                 }
