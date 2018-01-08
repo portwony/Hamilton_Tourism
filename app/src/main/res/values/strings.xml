@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">Hamilton Tourism</string>
     <string name="app_intro">Welcome to the Hamilton Tourism App. Select one of the categories below to proceed.</string>
-    <string name="permission_rationale">This app may require your location in order to show you nearby points of interest.</string>
-    <string name="permission_denied_explanation">You have denied this application access to your location, which may hinder the ability of Hamilton Tourism to show you nearby points of interest.</string>
+    <string name="permission_rationale">This app may require your location in order to function properly.</string>
+    <string name="permission_denied_explanation">You have denied this application access to your location, which may hinder application functionality.</string>
     <string name="settings">Settings</string>
+    <string name="update_database">Update Database</string>
+    <string name="fahrenheit">Fahrenheit</string>
+    <string name="celsius">Celsius</string>
+    <string name="temperature_units">Temperature Units</string>
+    <string name="number_of_locations_shown">Number of locations shown:</string>
 </resources>

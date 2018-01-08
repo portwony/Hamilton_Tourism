@@ -1,5 +1,7 @@
 package ca.mohawk.opendata.hamiltontourism;
 
+
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,6 +26,7 @@ public class YelpService {
                 .build();
 
         String yelptoken = "Bearer ytyx5h9T9RbbIaxlOlZiQ6jBQ7QQkHp9s0X7jrR2iHHlW3UJOD9o1BX0-CAMHO2C3zLB4hL-LWJ6KELufTTSm-EY0Y6vexPYIPACFE9w_u9QPt6yevR3dRZU-CEfWnYx";
+
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse("https://api.yelp.com/v3/businesses/search?term=restaurants").newBuilder();
         if (longitude != "" && latitude != "") {

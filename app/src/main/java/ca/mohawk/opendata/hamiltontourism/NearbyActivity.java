@@ -19,17 +19,17 @@ public class NearbyActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId())
-                {
+                switch (item.getItemId()) {
                     case R.id.action_home:
-                        Intent intentHome = new Intent (NearbyActivity.this, MainActivity.class);
+                        Intent intentHome = new Intent(NearbyActivity.this, MainActivity.class);
                         startActivity(intentHome);
                         break;
                     case R.id.action_nearby:
-                        Intent intentNearby = new Intent (NearbyActivity.this, NearbyActivity.class);
-                        startActivity(intentNearby);
                         break;
-
+                    case R.id.action_settings:
+                        Intent intentSettings = new Intent(NearbyActivity.this, SettingsActivity.class);
+                        startActivity(intentSettings);
+                        break;
                 }
                 return true;
             }

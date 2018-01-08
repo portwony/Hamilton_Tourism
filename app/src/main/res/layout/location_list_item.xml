@@ -46,24 +46,27 @@
         android:id="@+id/idTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="1dp"
-        android:textColor="#FFFFFF"
-        android:text="TextView" />
+        android:text="TextView"
+        android:visibility="invisible"
+        android:textColor="@android:color/background_dark"
+        android:textSize="1sp" />
 
     <TextView
         android:id="@+id/latitudeTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="1dp"
+        android:visibility="invisible"
         android:text="TextView"
-        android:textColor="#FFFFFF"/>
+        android:textColor="@android:color/background_dark"
+        android:textSize="1sp" />
 
     <TextView
         android:id="@+id/longitudeTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="1dp"
         android:text="TextView"
-        android:textColor="#FFFFFF"/>
+        android:visibility="invisible"
+        android:textColor="@android:color/background_dark"
+        android:textSize="1sp" />
 
 </LinearLayout>
