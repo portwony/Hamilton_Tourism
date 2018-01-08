@@ -45,6 +45,7 @@ public class RestaurantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
         final TextView textView = (TextView) findViewById(R.id.restaurantNameTextView);
+
         ButterKnife.bind(this);
 
         SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
@@ -72,8 +73,10 @@ public class RestaurantActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         final Restaurant restaurant = restaurants.get(index);
-                        TextView textView = (TextView) findViewById(R.id.restaurantNameTextView);
-                        textView.setText(restaurant.getName());
+                      //  TextView textView = (TextView) findViewById(R.id.restaurantNameTextView);
+                      //  textView.setText(restaurant.getName());
+                        Button button = (Button)findViewById(R.id.btnName);
+                        button.setText(restaurant.getName());
                         TextView addressTextView = (TextView) findViewById(R.id.AddressTextView);
                         if (restaurant.getAddress().size() > 0)
                             addressTextView.setText(TextUtils.join(", ", restaurant.getAddress()));
