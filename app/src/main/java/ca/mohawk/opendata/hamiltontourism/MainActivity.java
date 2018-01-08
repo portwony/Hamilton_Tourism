@@ -176,16 +176,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
 
-                //pass necessary values to intent. values in IF statement are only used to pass back to main
-                int categoryId = (position*2)+1;
+                if (position == 0) {
+                    //pass necessary values to intent. values in IF statement are only used to pass back to main
+                    Intent intent = new Intent(view.getContext(), RestaurantsActivity.class);
+                    intent.putExtra("userLatitude", String.valueOf(userLatitude));
+                    intent.putExtra("userLongitude", String.valueOf(userLongitude));
+                    startActivity(intent);
+
+                }
+                else {
+                    //pass necessary values to intent. values in IF statement are only used to pass back to main
+                    int categoryId = (position * 2) + 1;
 
 
-                //pass necessary values to intent. values in IF statement are only used to pass back to main
-                Intent intent = new Intent(view.getContext(), LocationActivity.class);
-                intent.putExtra("categoryId", categoryId);
-                intent.putExtra("userLatitude", userLatitude);
-                intent.putExtra("userLongitude", userLongitude);
-                startActivity(intent);
+                    //pass necessary values to intent. values in IF statement are only used to pass back to main
+                    Intent intent = new Intent(view.getContext(), LocationActivity.class);
+                    intent.putExtra("categoryId", categoryId);
+                    intent.putExtra("userLatitude", userLatitude);
+                    intent.putExtra("userLongitude", userLongitude);
+                    startActivity(intent);
+                }
 
             }
 
@@ -303,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
 
                             userLatitude = mLastLocation.getLatitude();
                             userLongitude = mLastLocation.getLongitude();
-                    
+
                         } else {
                             Log.w(TAG, "getLastLocation:exception", task.getException());
                         }
