@@ -26,8 +26,6 @@ public class NearbyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nearby);
 
 
-
-
         final SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
         final ListView lvNearby = (ListView) findViewById(R.id.nearbyList);
@@ -59,10 +57,7 @@ public class NearbyActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
-
+        
 
         String[] projection = {"_id, name, address, type, latitude, longitude, additionalInfo, (abs(latitude - " + userLatitude +  ") + abs(longitude - " + userLongitude + ")) as closeness"};
         String selection = null;
@@ -100,9 +95,6 @@ public class NearbyActivity extends AppCompatActivity {
                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
                 intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
                 startActivity(intent);
-
-
-
             }
 
         });
