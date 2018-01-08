@@ -320,8 +320,7 @@ public class MainActivity extends AppCompatActivity {
                             int t = (int)(jObject.getDouble("temp")-273.15);
                             textView1.setText(""+t+"° Celsius");
                         } else {
-                            double t = jObject.getDouble("temp")-273.15;
-                            t = t * 1.8 + 32;
+                            int t = (int)((jObject.getDouble("temp")-273.15) * 1.8 + 32);
                             textView1.setText(""+t+"° Fahrenheit");
                         }
 

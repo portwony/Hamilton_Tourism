@@ -76,6 +76,8 @@ public class RestaurantsActivity extends AppCompatActivity {
     }
 
     private void getRestaurants(String longitude, String latitude) {
+
+
         final YelpService yelpService = new YelpService();
         yelpService.findRestaurants(longitude, latitude, new Callback() {
 
