@@ -5,23 +5,25 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <TextView
-        android:id="@+id/restaurantNameTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.11"
-        android:background="@color/common_google_signin_btn_text_dark_disabled"
-        android:backgroundTint="@color/common_google_signin_btn_text_light_disabled"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/btnName"
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:background="@color/colorBlue"
+        android:text=""
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:enabled="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
 
     <ImageView
         android:id="@+id/restaurantImageView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:scaleType="centerCrop"
         android:src="@drawable/background"
         android:textAlignment="center"
@@ -31,30 +33,73 @@
         android:id="@+id/directionsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.11"
-        android:text="Directions" />
+        android:text="Click here for Directions"
+        android:textStyle="italic"
+        android:textColor="#FFFFFF"
+        android:background="@color/colorBlue"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:text="Address:"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="#000000"
+        />
 
     <TextView
         android:id="@+id/AddressTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:gravity="left"
         android:layout_weight="0.11"
-        android:textAlignment="center"
         android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:text="Phone Number:"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="#000000"
+        />
 
     <TextView
         android:id="@+id/PhoneTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autoLink="phone"
+        android:paddingLeft="10dp"
+        android:gravity="left"
         android:layout_weight="0.11"
-        android:textAlignment="center"
         android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:text="Website:"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="#000000"
+        />
 
     <TextView
         android:id="@+id/WebsiteTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
         android:layout_weight="0.11"
-        android:textAlignment="center"
-        android:textSize="18sp" />
+        android:gravity="left"
+        android:textSize="5sp" />
+
 </LinearLayout>
