@@ -311,11 +311,19 @@ public class MainActivity extends AppCompatActivity {
 
 
                     try{
+                        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
 
                         String jArray = data.getString("main");
                         JSONObject jObject = new JSONObject(jArray);
-                        int t = (int)(jObject.getDouble("temp")-273.15);
-                        textView1.setText(""+t+"° Celsius");
+                        if(pref.getBoolean("isCelsius", true)){
+                            int t = (int)(jObject.getDouble("temp")-273.15);
+                            textView1.setText(""+t+"° Celsius");
+                        } else {
+                            double t = jObject.getDouble("temp")-273.15;
+                            t = t * 1.8 + 32;
+                            textView1.setText(""+t+"° Fahrenheit");
+                        }
+
 
                     }catch(Exception e){}
                 }
