@@ -3,10 +3,9 @@
     package="ca.mohawk.opendata.hamiltontourism">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-feature android:name="android.hardware.location.gps" />
+    <uses-feature android:name="android.hardware.location.gps"/>
     <uses-feature android:name="android.hardware.location.network" />
 
     <application
@@ -23,9 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NearbyActivity" />
-        <activity android:name=".LocationActivity" />
-        <activity android:name=".RestaurantsActivity" />
+        <activity android:name=".NearbyActivity"></activity>
+        <activity android:name=".LocationActivity"></activity>
+        <activity android:name=".RestaurantsActivity"></activity>
+        <activity android:name=".RestaurantActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".SettingsActivity"></activity>
     </application>
 
