@@ -83,7 +83,7 @@ public class NearbyActivity extends AppCompatActivity {
 
                 SQLiteDatabase db2 = dbHelper.getReadableDatabase();
 
-                Cursor c = db2.rawQuery("SELECT name, latitude, longitude, (abs(latitude - " + userLatitude +  ") + abs(longitude - " + userLongitude + ")) as closeness FROM Locations WHERE categoryID = "+categoryId+" ORDER BY closeness ASC LIMIT " + pref.getInt("limit",20), null);
+                Cursor c = db2.rawQuery("SELECT name, latitude, longitude, (abs(latitude - " + userLatitude +  ") + abs(longitude - " + userLongitude + ")) as closeness FROM Locations ORDER BY closeness ASC LIMIT " + pref.getInt("limit",20), null);
                 c.moveToPosition(position);
 
                 String name = c.getString(0);
