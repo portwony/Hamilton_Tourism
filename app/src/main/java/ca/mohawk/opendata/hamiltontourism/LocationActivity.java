@@ -43,29 +43,9 @@ public class LocationActivity extends AppCompatActivity {
 
         Button button = (Button)findViewById(R.id.btnTitle);
 
-        switch (categoryId){
-            case 2:
-                button.setText("Accomodations");
-                break;
-            case 3:
-                button.setText("Waterfalls");
-                break;
-            case 4:
-                button.setText("Places of Worship");
-                break;
-            case 5:
-                button.setText("Park Amenities");
-                break;
-            case 6:
-                button.setText("Public Art");
-                break;
-            case 7:
-                button.setText("Beaches");
-                break;
-            case 8:
-                button.setText("Libraries");
-                break;
-        }
+        Cursor c=db.rawQuery("SELECT name FROM categories WHERE _id  = " + categoryId,null);
+        c.moveToFirst();
+        button.setText(c.getString(c.getColumnIndex("name")));
 
         String[] projection = {"_id, name, address, type, latitude, longitude, additionalInfo, (abs(latitude - " + userLatitude +  ") + abs(longitude - " + userLongitude + ")) as closeness"};
         String selection = " categoryId =  " + categoryId;

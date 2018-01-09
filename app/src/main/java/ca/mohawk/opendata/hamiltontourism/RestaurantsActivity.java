@@ -31,7 +31,6 @@ public class RestaurantsActivity extends AppCompatActivity {
     @Bind(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
-
     private RestaurantListAdapter mAdapter;
 
     public ArrayList<Restaurant> restaurants = new ArrayList<>();
@@ -47,9 +46,6 @@ public class RestaurantsActivity extends AppCompatActivity {
         String latitude = intent.getStringExtra("userLatitude");
 
         getRestaurants(longitude, latitude);
-
-
-
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
@@ -70,14 +66,9 @@ public class RestaurantsActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
     }
 
     private void getRestaurants(String longitude, String latitude) {
-
-
         final YelpService yelpService = new YelpService();
         yelpService.findRestaurants(longitude, latitude, new Callback() {
 
