@@ -6,6 +6,28 @@
     android:layout_height="match_parent"
     tools:context="ca.mohawk.opendata.hamiltontourism.NearbyActivity">
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:background="@color/colorBlue"
+        android:text="Points of Interest Nearby"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:enabled="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <ListView
+        android:id="@+id/nearbyList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="103dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="50dp"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"

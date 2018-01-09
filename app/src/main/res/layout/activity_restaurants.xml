@@ -25,7 +25,7 @@
         android:id="@+id/button4"
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="@color/colorGrey"
+        android:background="@color/colorPrimary"
         android:enabled="false"
         android:layout_below="@+id/button2"
         android:layout_alignParentStart="true" />
@@ -43,16 +43,17 @@
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@color/colorPrimary"
         android:layout_alignParentBottom="true">
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottomNavView_Bar"
-            android:layout_width="match_parent"
+            android:layout_width="400dp"
             android:layout_height="match_parent"
             app:itemBackground="@color/colorPrimary"
             app:itemIconTint="@drawable/nav_item_color_state"
             app:itemTextColor="@drawable/nav_item_color_state"
-            app:menu="@menu/bottom_navigation_menu"
+            app:menu="@menu/restaurants_nav_bar"
             >
 
         </android.support.design.widget.BottomNavigationView>
